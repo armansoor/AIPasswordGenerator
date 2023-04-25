@@ -16,25 +16,19 @@ To run this program, you'll need to have the following:
 To generate a random, meaningful, hard-to-remember password, simply run the following command:
 
 <pre>
-```
 python generate_password.py
-```
 </pre>
 
 The program will then use the GPT-3 API to generate a random password and print it to the console in the following format:
 
 <pre>
-```
 Generated password: [password]
-```
 </pre>
 
 To generate multiple passwords that contain both upper and lower case characters, run the following command:
 
 <pre>
-```
 python generate_multiple_passwords.py
-```
 </pre>
 
 The program will generate 5 passwords and print them to the console, each containing both upper and lower case characters.
