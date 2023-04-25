@@ -12,7 +12,7 @@ openai.api_key = secrets["api_key"]
 
 # generate a random, meaningful password using OpenAI's GPT-3
 def generate_password():
-    prompt = "Generate a random, meaningful password that's hard to remember, contains both uppercase and lowercase letters, as well as numbers and special characters, and is also a real English word."
+    prompt = "Generate a random, meaningful password that's hard to remember."
     completions = openai.Completion.create(
         engine="davinci",
         prompt=prompt,
@@ -23,15 +23,19 @@ def generate_password():
     )
 
     password = completions.choices[0].text.strip()
-
-    # add uppercase and lowercase letters, numbers, and special characters to password
-    length = len(password)
-    chars = string.ascii_letters + string.digits + string.punctuation
-    password = password + ''.join(random.choice(chars) for i in range(length))
-    password = ''.join(random.sample(password, len(password)))
-
     return password
 
-# generate and print a password
-password = generate_password()
-print(f"Generated password: {password}")
+# generate multiple passwords that contain both upper and lower case characters
+num_passwords = 5
+passwords = []
+for i in range(num_passwords):
+    while True:
+        password = generate_password()
+        if any(c.isupper() for c in password) and any(c.islower() for c in password):
+            passwords.append(password)
+            break
+
+# print the generated passwords
+print("Generated passwords:")
+for password in passwords:
+    print(password)
